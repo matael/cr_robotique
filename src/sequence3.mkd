@@ -1,5 +1,29 @@
 # Séquence 3 : Projet Fangio
 
-Voilà le code :
+__Objectif__
+
+Le robot «Fangio» doit retrouver et suivre une piste tricolore tracée sur le sol. 
+La piste comporte des sections droites, des virages, des interruptions et des obstacles de taille variables que le robot doit contourner. 
+Lorsque le robot se trouve sur une surface blanche, c’est donc qu’il a quitté la piste, soit «de son plein gré» (contournement d’un obstacle), soit par accident (interruption de la piste). Dans ce cas, il doit retrouver la piste et continuer le parcours. 
+La piste comporte également des marques bleues que le robot devra compter.
+La course sera erminée dés que le robot aura compté 18 marques. Il s'arrêtera et affichera son temps de parcours en secondes.
+Le robot doit comporter un arrêt d'urgence de type bouton poussoir.
+De plus, les limites de la zone où le robot peut évoluer étant indiquées en jaune, la détection de la coueur jaune constitue également un arrêt d'urgence.
+
+__Restrictions__
+
+Une seule tâche, en dehors de main, qui doit gérer les arrêts d'urgence. 
+That's all.
+
+__Principe__
+
+Grominet réponds parfaitement au cahier des charges. La tâche main gère quasiment tout le programme (pas le choix, c'est la seule tâche en dehors de `Emergency_Stop()`)
+et gère les effets de lectures de toutes les couleurs possibles dans tous les cas possible.
+La tâche `Emergency_Stop()` gère quant à elle les trois cas d'arrêts : bouton, lecture de jaune, ou compteur de marques bleues arrivé à 18.
+Grominet suit la ligne avec une fluidité maximum, et réagis efficacement à tout effet le faisant sortir du circuit. Il est également capable de retrouver la ligne après un virage raté.
+Lorsque le télémètre avant lui indique un obstacle à cinq centimètres, il amorçe une esquive dépendant entièrement des dimensions de l'objet, en utilisant son télémètre de droite. (il esquive toujours par la gauche)
+
+
+__Produit__
 
 <script src="https://gist.github.com/1481384.js?file=fangio.c"></script>
