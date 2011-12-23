@@ -48,3 +48,31 @@ Nous l'avons rapidement (pour ne pas dire immédiatement) abandonnée au profit 
 
 On note (c'est malheureusement aussi le cas avec l'arduino) que les concepteurs de systèmes embarqués programmables grand public ont souvent tendance à vouloir simplifier le code à tout prix.
 On se retrouve au final avec une multitude de langages plus ou moins proche du C mais aucun n'offrant les possibilités de ce dernier...
+
+Capteurs, attente conditionnelle
+--------------------------------
+
+Tout l'intéret du robot est de pouvoir réagir à son environnement.
+Pour cela, nous avons besoin de capteurs et surtout, de pouvoir récupérer et traiter les informations qu'ils.... captent !
+
+L'objectif était ici de prendre en main les capteurs et surtout de comprendre comment les utiliser via __NXC__.
+Il s'agissait aussi de comprendre le fonctionnement des instructions `Wait()` et `until()` (que nous avons déjà évoquée).
+
+### Capteurs
+
+Les fonctions d'initalisation des capteurs sont aisément assimilables :
+
+    SetSensorTouch(int port);       // capteur tactile
+    SetSensorSound(int port);       // microphone
+    SetSensorLowspeed(int port);    // télémètre
+
+__Pourquoi _"Lowspeed"_ ?__
+
+Un télémètre est un capteur qui ne fonctionne qu'à faible vitesse,... d'où le nom de la fonction.
+
+Les informations délivrées par ces capteurs sont récupérables au moyen de fonctions au moins aussi simples que les premières :
+
+- `SensorUS(int port)` pour le télémètre (valeur entre __0__ et __255__, sur __8 bits__ donc)
+- `Sensor(int port)` pour tous les autres
+
+
