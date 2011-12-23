@@ -130,3 +130,19 @@ img.floating{
 .right { float:right}
 .left { float:left}
 .math { font-style: italic; font-weight:bold}
+
+/* Tableaux */
+
+table {
+    margin: auto;
+    border-collapse : collapse;
+}
+
+td {
+    border : 1px solid black;
+    padding: 5px;
+}
+
+tr td:first-child {
+    font-weight: bold;
+}
