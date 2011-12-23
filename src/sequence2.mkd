@@ -40,16 +40,21 @@ Voilà donc le code pour nos carrés :
 
 <script src="https://gist.github.com/1513923.js?file=Tom.c"></script>
 
+---
+
 __Parlons de `repeat`...__
 
 Il nous a été proposé d'utiliser l'instruction `repeat(n){}` pour la répétition d'une séquence d'instruction.
 
 Nous l'avons rapidement (pour ne pas dire immédiatement) abandonnée au profit d'une très classique boucle `while` (ou `for` mais c'est pareil...). Il nous semblait en effet intéressant de conserver un code source le plus proche du C possible.
-De même, la fonction `until`, équivalent d'une boucle while(!) vide, n'a pas été convaincante en pratique.
+De même, l'instruction `until`, équivalente d'une boucle `while(!(condition)){}`, n'a pas été convaincante en pratique.
 
 On note (c'est malheureusement aussi le cas avec l'arduino) que les concepteurs de systèmes embarqués programmables grand public ont souvent tendance à vouloir simplifier le code à tout prix.
 
 On se retrouve au final avec une multitude de langages plus ou moins proche du C mais aucun n'offrant les possibilités de ce dernier...
+
+---
+
 
 Capteurs, attente conditionnelle
 --------------------------------
@@ -67,33 +72,87 @@ Les fonctions d'initalisation des capteurs sont aisément assimilables :
     SetSensorTouch(int port);       // capteur tactile
     SetSensorSound(int port);       // microphone
     SetSensorLowspeed(int port);    // télémètre
+    SetSensorColorFull(int port);   // capteur couleur
+
+---
 
 __Pourquoi _"Lowspeed"_ ?__
 
 Un télémètre est un capteur qui ne fonctionne qu'à faible vitesse,... d'où le nom de la fonction.
 
+---
+
 Les informations délivrées par ces capteurs sont récupérables au moyen de fonctions au moins aussi simples que les premières :
 
 - `SensorUS(int port)` pour le télémètre (valeur entre __0__ et __255__, sur __8 bits__ donc)
 - `Sensor(int port)` pour tous les autres
+    - capteur tactile : renvoie une valeur booléenne
+    - microphone : renvoie un entier entre __0__ et __100__ (ou `NULL`)
+    - capteur couleur : renvoie un entier entre __1__ et __6__ compris
+
+### Wait et until
+
+L'instruction `until` a déjà été discutée plus haut. Elle permet de réaliser une attente __jusqu'a ce que....__ soit l'inverse d'une i`while` qui exécute ses instructions __tant que....__.
+On peut trouver une équivalence plus habituelle à `until` avec la construction suivante :
+
+    while(!(condition)) {}
+
+La fonction `Wait` est une simple fonction d'attente. On peut la mettre en parallèle avec la fonction `delay()` de l'arduino.
+
+Elle possède d'ailleurs le __même inconvénient__ : elle est bloquante.
+
+---
+
+Peu de langages proposent une fonction d'attente non-bloquante.
+On remarquera que le __Javascript__ met à disposition la fonction `setTimeout(fun, temps_ms);` qui n'est pas bloquante et permet d'utiliser le processus courant pendant le temps d'attente.
+
+Cela parait dommageable qu'aucune structure équivalente n'ait été trouvée pour la robotique car elle autorise de nombreux comportements intéressants.
+
+---
+
+### Exercice
+
+Voilà les étapes du programme demandé :
+
+1. Attendre que le micro détecte un son fort
+2. Faire avancer le robot à pleine puissance
+3. Attendre un obstacle à moins de 20 cm
+4. Se rapprocher de l’obstacle à vitesse réduite
+5. Attendre que le capteur tactile soit actionné
+6. Arrêter les moteurs immédiatement
+7. Attendre une seconde (temporisation)
+8. Reculer doucement sur 10cm environ
+9. Faire un quart de tour sur place
+
+
+Et le code qui va avec :
+
+<script src="https://gist.github.com/1514414.js?file=Lessive.c"></script>
 
 
 Le principe des tâches
 ----------------------
 
-Le code suivant, exploitant le capteur couleur, fait du robot un chercheur de ligne des plus efficace : le robot effectue une spirale carrée, couvrant ainsi un maximum de terrain. 
-En parallèle, une tâche analyse les résultats collectés par le capteur couleur. 
-Elle stoppe immédiatement l'ensemble des tâches via la fonction `StopAllTasks()` dés que la couleur rouge apparaît.
+Le code suivant, exploitant le capteur couleur, fait du robot un chercheur de ligne des plus efficaces : le robot effectue une spirale carrée, couvrant ainsi un maximum de terrain. 
+En parallèle, une tâche analyse les résultats collectés par le capteur couleur et stoppe immédiatement l'ensemble des tâches via la fonction `StopAllTasks()` dés que la couleur rouge apparaît.
 
 Sans la tâche, il aurait été très complexe de collecter et analyser les données du capteur couleur en permanence. En effet, la fonction `RotateMotor()` utilisée pour avancer d'une distance précise étant bloquante, le capteur couleur n'aurait pu être utilisé qu'une fois le déplacement terminé.
-Les tâches, propre à la robotique, sont donc formidablement adaptée à ce problème. Elles tournent en parallèles les unes des autres, et assurent un comportement complexe nécessaire à tous projet digne de ce nom. 
 
-__Gesion des fichiers__
+Les tâches, propres à la robotique via __NXC__, sont donc formidablement adaptées à ce problème. Elles tournent en parallèles les unes des autres, et assurent un comportement complexes nécessaires à tout projet digne de ce nom.
+
+Pour plus d'information sur la manière de gérer ces comportements dans d'autres systèmes embarqués, voir l'annexe.
+
+Gesion des fichiers
+-------------------
 
 Le NXC propose une puissante alternative à la gestion fichier du C : les `fprintf()` sont remplacés par la fonction de plus haut niveau `WriteLnString()`.
-Pour utiliser ces nouvelles fonctions, nous nous placons dans un contexte de mesure la précision du télémètre.
-Le robot recule progressivement en ligne droite, et effectue une mesure de distance à chaque fois qu'il rencontre une des sept marques bleue régulièrement espacées. 
+
+Pour utiliser cette nouvelle fonction, nous nous placons dans un contexte de qualification de la précision du télémètre.
+Le robot recule progressivement en ligne droite, et effectue une mesure de distance à chaque fois qu'il rencontre une des sept marques bleue régulièrement espacées.
+
 Sept mesures sont donc effectuées, avec un obstacle intialement placé à 5 centimètres du capteur.
+
+Nous obtenons le tableau suivant :
 
 <table>
     <tr>
@@ -103,4 +162,5 @@ Sept mesures sont donc effectuées, avec un obstacle intialement placé à 5 cen
     </tr>
 </table>
 
-On distingue une augmentation de la distance de 6 cm environs entre chaque marque. (l'incertitude indiquée par le fabricant du télémètre est fixée à 3cm)
+On distingue une augmentation de la distance de 6 cm environ entre chaque marque (l'incertitude indiquée par le fabricant du télémètre est de 3cm).
+
