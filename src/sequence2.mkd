@@ -11,7 +11,7 @@ Le langage utilisé ici sera le langague __NXC__ (_Not eXtacly C_).
 
 Ce langage est dérivé du __C__ avec notamment l'ajout d'une couche d'abstraction pour simplifier l'accès au hardware.
 
-La grande majorité des fonctions et utilitaires C est __présent et utilisable__, on notera toutefois que certaines (`enum` par exemple) sont inutilisables (ou du moins en apparence).
+La grande majorité des fonctions et utilitaires C est __présente et utilisable__, on notera toutefois que certaines (`enum` par exemple) sont rejetées par le compilateur (ou du moins en apparence).
 
 Exercice : parcours géométriques prédéfinis
 -------------------------------------------
@@ -32,8 +32,8 @@ Pour ce genre de tâches, deux moyens :
 - on écrit toutes les instructions à la suite nous même:
     - c'est pas joli, pas logique
     - ça devient tendu quand le nombre d'itérations tend vers l'infini
-- on ecrit une fonction qui se chargera de tout faire pour nous
-    - le code devient plus clair par ce que divisé en _"sous-programmes"_
+- on écrit une fonction qui se chargera de tous faire pour nous
+    - le code devient plus clair puisque divisé en _"sous-programmes"_
     - il est beaucoup plus facile à maintenir ou à retravailler
 
 Voilà donc le code pour nos carrés :
@@ -45,6 +45,28 @@ __Parlons de `repeat`...__
 Il nous a été proposé d'utiliser l'instruction `repeat(n){}` pour la répétition d'une séquence d'instruction.
 
 Nous l'avons rapidement (pour ne pas dire immédiatement) abandonnée au profit d'une très classique boucle `while` (ou `for` mais c'est pareil...). Il nous semblait en effet intéressant de conserver un code source le plus proche du C possible.
+De même, la fonction `until`, équivalent d'une boucle while(!) vide, n'a pas été convaincante en pratique.
 
 On note (c'est malheureusement aussi le cas avec l'arduino) que les concepteurs de systèmes embarqués programmables grand public ont souvent tendance à vouloir simplifier le code à tout prix.
-On se retrouve au final avec une multitude de langages plus ou moins proche du C mais aucun n'offrant les possibilités de ce dernier...
+On se retrouve au final avec une multitude de langages plus ou moins proche du C mais aucun n'offrant l'ensemble des possibilités de ce dernier...
+
+__Le principe des tâches__
+
+Le code suivant, exploitant le capteur couleur, fait du robot un chercheur de ligne des plus efficace : le robot effectue une spirale carrée, couvrant ainsi un maximum de terrain. 
+En parallèle, une tâche analyse les résultats collectés par le capteur couleur. 
+Elle stoppe immédiatement l'ensemble des tâches via la fonction `StopAllTasks()` dés que la couleur rouge apparaît.
+
+Sans la tâche, il aurait été très complexe de collecter et analyser les données du capteur couleur en permanence. En effet, la fonction `RotateMotor()` utilisée pour avancer d'une distance précise étant bloquante, le capteur couleur n'aurait pu être utilisé qu'une fois le déplacement terminé.
+Les tâches, propre à la robotique, sont donc formidablement adaptée à ce problème. Elles tournent en parallèles les unes des autres, et assurent un comportement complexe nécessaire à tous projet digne de ce nom. 
+
+__Gesion des fichiers__
+
+Le NXC propose une puissante alternative à la gestion fichier du C : les `fprintf()` sont remplacés par la fonction de plus haut niveau `WriteLnString()`.
+Pour utiliser ces nouvelles fonctions, nous nous placons dans un contexte de mesure la précision du télémètre.
+Le robot recule progressivement en ligne droite, et effectue une mesure de distance à chaque fois qu'il rencontre une des sept marques bleue régulièrement espacées. 
+Sept mesures sont donc effectuées, avec un obstacle intialement placé à 5 centimètres du capteur.
+|| Distance mesurée || 13  || 19 || 23 || 29 || 35 || 40 || 46 ||
+|| Marque || 1 || 2 || 3 || 4 || 5 || 6 || 7 ||
+On distingue une augmentation de la distance de 6 cm environs entre chaque marque. (l'incertitude indiquée par le fabricant du télémètre est fixée à 3cm)
+
+
