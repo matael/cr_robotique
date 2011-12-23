@@ -1,13 +1,19 @@
-Here is the first page of your __webiste__ !
+Dans le cadre du premier semestre de la L1 SPI, nous avons pris part à un __projet robotique__.
 
-Feel free to _modify_ it and to _create_ other pages in the `src/` directory using your favorite text and the [markdown](http://daringfireball.net/projects/markdown/syntax).
+Le matériel
+===========
 
-You can also, of course, modify the files `template/begin` and `template/end` to customize this site. when you run make, `.mkd` files are transformed into `.html` in a `pages` directory using this model :
+Nous avons travaillé sur la plateforme robotique _Lego NXT_. 
 
-    content of begin file
+Cette plateforme est consituée de :
 
-    translated HTML for mkd files
+- Une __unité centrale__ connectable à un ordinateur via une liaison USB
+- De __2 servo-moteurs__ (que l'on utilise ici pour l'avancée du robot)
+- De capteurs :
+    - __1 bumper__
+    - __2 télémètres__
+    - __1 capteur couleur (RGB)__
+    - __1 microphone__
+    - __1 capteur de suivi de ligne__
 
-    content of end file
-
-read the readme for more informations
+Tout ces capteurs sont contrôlés via une __liaison I2C__.

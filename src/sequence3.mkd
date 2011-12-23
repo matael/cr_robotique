@@ -1,0 +1,5 @@
+# Séquence 3 : Projet Fangio
+
+Voilà le code :
+
+<script src="https://gist.github.com/1481384.js?file=fangio.c"></script>

@@ -1,0 +1,50 @@
+Séquence 2 : Programmation classique en NXC
+===========================================
+
+Langage de Programmation
+------------------------
+
+Le plus pertinent dans la programmation et l'optimisation d'un système embarqué reste de passer par un langage de programmation standard.
+Pour plus d'informations sur la programmation de systèmes embarqué en général, consultez l'annexe.
+
+Le langage utilisé ici sera le langague __NXC__ (_Not eXtacly C_). 
+
+Ce langage est dérivé du __C__ avec notamment l'ajout d'une couche d'abstraction pour simplifier l'accès au hardware.
+
+La grande majorité des fonctions et utilitaires C est __présent et utilisable__, on notera toutefois que certaines (`enum` par exemple) sont inutilisables (ou du moins en apparence).
+
+Exercice : parcours géométriques prédéfinis
+-------------------------------------------
+
+Nous avons fait éxécuter une série de parcours prédéfinis au robot et en particulier un "huit" :
+
+<script src="https://gist.github.com/1485377.js?file=infinity.c"></script>
+
+
+
+Fonctions, parcours à 1 paramètre
+---------------------------------
+
+Le sujet est cette fois de faire parcourir au robot des carrés de plus en plus grands (par paliers de 10cm).
+
+Pour ce genre de tâches, deux moyens :
+
+- on écrit toutes les instructions à la suite nous même:
+    - c'est pas joli, pas logique
+    - ça devient tendu quand le nombre d'itérations tend vers l'infini
+- on ecrit une fonction qui se chargera de tout faire pour nous
+    - le code devient plus clair par ce que divisé en _"sous-programmes"_
+    - il est beaucoup plus facile à maintenir ou à retravailler
+
+Voilà donc le code pour nos carrés :
+
+<script src="https://gist.github.com/1513923.js?file=Tom.c"></script>
+
+__Parlons de `repeat`...__
+
+Il nous a été proposé d'utiliser l'instruction `repeat(n){}` pour la répétition d'une séquence d'instruction.
+
+Nous l'avons rapidement (pour ne pas dire immédiatement) abandonnée au profit d'une très classique boucle `while` (ou `for` mais c'est pareil...). Il nous semblait en effet intéressant de conserver un code source le plus proche du C possible.
+
+On note (c'est malheureusement aussi le cas avec l'arduino) que les concepteurs de systèmes embarqués programmables grand public ont souvent tendance à vouloir simplifier le code à tout prix.
+On se retrouve au final avec une multitude de langages plus ou moins proche du C mais aucun n'offrant les possibilités de ce dernier...

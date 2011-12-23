@@ -1,0 +1,31 @@
+# Autres
+
+## Programmation de systèmes embarqués
+
+La programmation d'un robot type __NXT__ permet de s'approcher des problématiques inhérentes à tout projet de programmation embarquée.
+
+En effet, la programmation de tels systèmes relève parfois du cauchemar lorsqu'il s'agit d'optimiser drastiquement le code.
+
+Les systèmes embarqués à base de microcontrôleurs sont le plus souvent limités par la capacité mémoire du contrôleur hôte.
+
+Ces contrôleurs peuvent être des _microcontrôleurs_ :
+
+- PIC de chez Microchip (programmation en __C__ ou en __Basic__)
+- AVR de chez Atmel (programmation en __C__)
+- autres contrôleurs, le plus souvent programmés en __C__
+
+On trouve aussi parfois des circuits différents, de type _FPGA_ par exemple, ils sont alors programmés via un langage __HDL__ (_hardware description langage_), généralement __Verilog__ ou __VHDL__.
+
+### Exemple avec l'arduino
+
+L'arduino est une petite carte à microcontrôleur commandée par une __ATMega 328P__ et programmable dans un langage proche du __C__. 
+
+Voici un exemple d'implémentation d'un compteur 8 bits en langage "arduino" :
+
+<script src="https://gist.github.com/1477142.js?file=compteur_8bit.pde"></script>
+
+### Exemple en VHDL
+
+Voici le même exemple de compteur sur 8 bits à l'infini avec remise à zéro mais cette fois en __VHDL__ :
+
+<script src="https://gist.github.com/1477142.js?file=gistfile1.vhd"></script>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Projet Acoustique | CR de mi-parcours</title>
+        <meta charset="utf-8"/>
+	<link rel="stylesheet" href="main.css" media="screen"/>
+    </head>
+    <body>
+        <header>
+		<p><a href="index.html">Projet Robotique</a></p>
+        </header>
+        <div  id="menu">
+            <ul>
+                <li><a href="sequence1.html">Séquence 1</a></li><li>|</li>
+                <li><a href="sequence2.html">Séquence 2</a></li><li>|</li>
+		<li><a href="sequence3.html">Séquence 3</a></li><li>|</li>
+                <li><a href="sequence4.html">Séquence 4</a></li><li>|</li>
+                <li><a href="autres.html">Autres</a></li>
+            </ul>
+        </div>
+        <div id="main_content">
+		<article>
+<h1>Séquence 1 : Découverte, programmation iconique en NXT-G</h1>
+
+<p><img src="media/brique_nxt.jpg" class="right floating" alt="brique nxt" style="width:300px"/></p>
+
+<h2>Construction du robot</h2>
+
+<p>Nous avons fait connaissance avec l'objet de nos expérimentations futures en construisant un robot en <strong>Lego Technics</strong>.</p>
+
+<p>Cette plateforme est animée par une <strong>brique programmable NXT</strong> (voir ci-contre).</p>
+
+<p>Deux moyens permettent de programmer la brique NXT :</p>
+
+<ul>
+<li>utiliser le logiciel <em>MindStorm</em> (programmation via <strong>NXT-G</strong>)</li>
+<li>utiliser un langage de programmation dédié</li>
+</ul>
+
+<h2>MindStorm</h2>
+
+<p>Le <strong>NXC-G</strong> est un moyen de programmer le robot au moyen d'un éditeur graphique modélisant les instructions au moyen de blocs.</p>
+
+<p>Cette voie a pour principal avantage de ne nécessiter <strong>aucune</strong> connaissance préalable en programmation, et d'élaborer un comportement (très)  simple avec un peu de logique.
+On notera que, dès que l'on cherche à implémenter des algorithmes un peu plus complexes, le <strong>NXT-G</strong> devient parfaitement inadapté.</p>
+
+<p>Le <strong>NXT-G</strong> est un langage basé sur l'exécution de blocs dans un ordre définit par l'utilisateur. Si les blocs prit uns à uns n'ont aucune utilité réelle, c'est la séquence logique de blocs qui donnent au programme sa puissance. 
+Quelques exemples de blocs : <em>avancer à l'infini</em>, <em>attendre que le capteur tactile soit enfoncé</em>, <em>tourner à droite</em>.
+Si en théorie ce langage semble rapide à mettre en place et agréable à gérer, il assure en pratique un tas de spaguettis informe et incompréhensible dés que l'on veut gérer des conditions avancées et autres options utiles.</p>
+
+<p class="legende">
+    <img src="media/Cas_ramelle.PNG" alt="Un programme"/>
+    Un exemple de programme un peu avancé...
+</p>
+
+<p>Le programme le plus aboutit implémenté en <strong>NXT-G</strong> que nous ayons fait utilisait deux commutations et dirigeais un robot pourvu de deux télémètres (un dirigé à sa droite, un dirigé à sa gauche), et, lorsqu'il heurtait un obstacle, analysait les obstacles à droite et à gauche et opérait un virage en fonction du résultat des deux sondages.
+Le programme n'aurait pas pu être complexifié, deux commutations étant très gourmandes en place sur le logiciel qui ne permet pas d'étendre la surface où l'on pose les blocs...
+Autant dire que nous étions pressés de trouver une vraie programmation, avec un vrai langage et un vrai IDE.</p>
+
+<h2>Exemples de programmation</h2>
+
+<h3>Attente sur des capteurs</h3>
+
+<p>Il est possible en <strong>NXT-G</strong> de réaliser des attentes sur des capteurs (comme des interruptions pas belles...) avec une séquence de blocs de ce type :</p>
+
+<p class="legende">
+    <img src="media/Avancer_UntilTouch.PNG" alt="Un programme"/>
+    Un exemple d'avancer avec attente conditionnelle sur un capteur tactile
+</p>
+
+<h3>Conditions utilisant des capteurs</h3>
+
+<p>La condition suivante tourne à droite ou à gauche en fonction de la distance :</p>
+
+<p class="legende">
+    <img src="media/Commut_Dist_Virage.PNG" alt="Un programme"/>
+    Un exemple de commutation en fonction de l'état d'un capteur
+</p>
+		<div style="clear:both;">&nbsp;</div>
+		</article>
+	</div>
+        <div style="clear:both;">&nbsp;</div>
+	<footer><p>Lucas Bourneuf | <a href="#menu">Retour en haut &#9650;</a>  | Mathieu Gaborit</p></footer>
+</body>
+</html>

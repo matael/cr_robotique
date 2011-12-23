@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Projet Acoustique | CR de mi-parcours</title>
+        <meta charset="utf-8"/>
+	<link rel="stylesheet" href="main.css" media="screen"/>
+    </head>
+    <body>
+        <header>
+		<p><a href="index.html">Projet Robotique</a></p>
+        </header>
+        <div  id="menu">
+            <ul>
+                <li><a href="sequence1.html">Séquence 1</a></li><li>|</li>
+                <li><a href="sequence2.html">Séquence 2</a></li><li>|</li>
+		<li><a href="sequence3.html">Séquence 3</a></li><li>|</li>
+                <li><a href="sequence4.html">Séquence 4</a></li><li>|</li>
+                <li><a href="autres.html">Autres</a></li>
+            </ul>
+        </div>
+        <div id="main_content">
+		<article>
+<h1>Séquence 2 : Programmation classique en NXC</h1>
+
+<h2>Langage de Programmation</h2>
+
+<p>Le plus pertinent dans la programmation et l'optimisation d'un système embarqué reste de passer par un langage de programmation standard.
+Pour plus d'informations sur la programmation de systèmes embarqué en général, consultez l'annexe.</p>
+
+<p>Le langage utilisé ici sera le langague <strong>NXC</strong> (<em>Not eXtacly C</em>). </p>
+
+<p>Ce langage est dérivé du <strong>C</strong> avec notamment l'ajout d'une couche d'abstraction pour simplifier l'accès au hardware.</p>
+
+<p>La grande majorité des fonctions et utilitaires C est <strong>présent et utilisable</strong>, on notera toutefois que certaines (<code>enum</code> par exemple) sont inutilisables (ou du moins en apparence).</p>
+
+<h2>Exercice : parcours géométriques prédéfinis</h2>
+
+<p>Nous avons fait éxécuter une série de parcours prédéfinis au robot et en particulier un "huit" :</p>
+
+<script src="https://gist.github.com/1485377.js?file=infinity.c"></script>
+
+<h2>Fonctions, parcours à 1 paramètre</h2>
+
+<p>Le sujet est cette fois de faire parcourir au robot des carrés de plus en plus grands (par paliers de 10cm).</p>
+
+<p>Pour ce genre de tâches, deux moyens :</p>
+
+<ul>
+<li>on écrit toutes les instructions à la suite nous même:
+<ul>
+<li>c'est pas joli, pas logique</li>
+<li>ça devient tendu quand le nombre d'itérations tend vers l'infini</li>
+</ul></li>
+<li>on ecrit une fonction qui se chargera de tout faire pour nous
+<ul>
+<li>le code devient plus clair par ce que divisé en <em>"sous-programmes"</em></li>
+<li>il est beaucoup plus facile à maintenir ou à retravailler</li>
+</ul></li>
+</ul>
+
+<p>Voilà donc le code pour nos carrés :</p>
+
+<script src="https://gist.github.com/1513923.js?file=Tom.c"></script>
+
+<p><strong>Parlons de <code>repeat</code>...</strong></p>
+
+<p>Il nous a été proposé d'utiliser l'instruction <code>repeat(n){}</code> pour la répétition d'une séquence d'instruction.</p>
+
+<p>Nous l'avons rapidement (pour ne pas dire immédiatement) abandonnée au profit d'une très classique boucle <code>while</code> (ou <code>for</code> mais c'est pareil...). Il nous semblait en effet intéressant de conserver un code source le plus proche du C possible.</p>
+
+<p>On note (c'est malheureusement aussi le cas avec l'arduino) que les concepteurs de systèmes embarqués programmables grand public ont souvent tendance à vouloir simplifier le code à tout prix.
+On se retrouve au final avec une multitude de langages plus ou moins proche du C mais aucun n'offrant les possibilités de ce dernier...</p>
+		<div style="clear:both;">&nbsp;</div>
+		</article>
+	</div>
+        <div style="clear:both;">&nbsp;</div>
+	<footer><p>Lucas Bourneuf | <a href="#menu">Retour en haut &#9650;</a>  | Mathieu Gaborit</p></footer>
+</body>
+</html>

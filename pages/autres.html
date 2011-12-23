@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Projet Acoustique | CR de mi-parcours</title>
+        <meta charset="utf-8"/>
+	<link rel="stylesheet" href="main.css" media="screen"/>
+    </head>
+    <body>
+        <header>
+		<p><a href="index.html">Projet Robotique</a></p>
+        </header>
+        <div  id="menu">
+            <ul>
+                <li><a href="sequence1.html">Séquence 1</a></li><li>|</li>
+                <li><a href="sequence2.html">Séquence 2</a></li><li>|</li>
+		<li><a href="sequence3.html">Séquence 3</a></li><li>|</li>
+                <li><a href="sequence4.html">Séquence 4</a></li><li>|</li>
+                <li><a href="autres.html">Autres</a></li>
+            </ul>
+        </div>
+        <div id="main_content">
+		<article>
+<h1>Autres</h1>
+
+<h2>Programmation de systèmes embarqués</h2>
+
+<p>La programmation d'un robot type <strong>NXT</strong> permet de s'approcher des problématiques inhérentes à tout projet de programmation embarquée.</p>
+
+<p>En effet, la programmation de tels systèmes relève parfois du cauchemar lorsqu'il s'agit d'optimiser drastiquement le code.</p>
+
+<p>Les systèmes embarqués à base de microcontrôleurs sont le plus souvent limités par la capacité mémoire du contrôleur hôte.</p>
+
+<p>Ces contrôleurs peuvent être des <em>microcontrôleurs</em> :</p>
+
+<ul>
+<li>PIC de chez Microchip (programmation en <strong>C</strong> ou en <strong>Basic</strong>)</li>
+<li>AVR de chez Atmel (programmation en <strong>C</strong>)</li>
+<li>autres contrôleurs, le plus souvent programmés en <strong>C</strong></li>
+</ul>
+
+<p>On trouve aussi parfois des circuits différents, de type <em>FPGA</em> par exemple, ils sont alors programmés via un langage <strong>HDL</strong> (<em>hardware description langage</em>), généralement <strong>Verilog</strong> ou <strong>VHDL</strong>.</p>
+
+<h3>Exemple avec l'arduino</h3>
+
+<p>L'arduino est une petite carte à microcontrôleur commandée par une <strong>ATMega 328P</strong> et programmable dans un langage proche du <strong>C</strong>. </p>
+
+<p>Voici un exemple d'implémentation d'un compteur 8 bits en langage "arduino" :</p>
+
+<script src="https://gist.github.com/1477142.js?file=compteur_8bit.pde"></script>
+
+<h3>Exemple en VHDL</h3>
+
+<p>Voici le même exemple de compteur sur 8 bits à l'infini avec remise à zéro mais cette fois en <strong>VHDL</strong> :</p>
+
+<script src="https://gist.github.com/1477142.js?file=gistfile1.vhd"></script>
+		<div style="clear:both;">&nbsp;</div>
+		</article>
+	</div>
+        <div style="clear:both;">&nbsp;</div>
+	<footer><p>Lucas Bourneuf | <a href="#menu">Retour en haut &#9650;</a>  | Mathieu Gaborit</p></footer>
+</body>
+</html>
