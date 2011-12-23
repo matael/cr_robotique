@@ -94,7 +94,13 @@ Le NXC propose une puissante alternative à la gestion fichier du C : les `fprin
 Pour utiliser ces nouvelles fonctions, nous nous placons dans un contexte de mesure la précision du télémètre.
 Le robot recule progressivement en ligne droite, et effectue une mesure de distance à chaque fois qu'il rencontre une des sept marques bleue régulièrement espacées. 
 Sept mesures sont donc effectuées, avec un obstacle intialement placé à 5 centimètres du capteur.
-|| Distance mesurée || 13  || 19 || 23 || 29 || 35 || 40 || 46 ||
-|| Marque || 1 || 2 || 3 || 4 || 5 || 6 || 7 ||
-On distingue une augmentation de la distance de 6 cm environs entre chaque marque. (l'incertitude indiquée par le fabricant du télémètre est fixée à 3cm)
 
+<table>
+    <tr>
+        <td>Distance mesurée</td><td>13</td><td>19</td><td>23</td><td>29</td><td>35</td><td>40</td><td>46</td>
+    </tr><tr>
+        <td>Marque</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+    </tr>
+</table>
+
+On distingue une augmentation de la distance de 6 cm environs entre chaque marque. (l'incertitude indiquée par le fabricant du télémètre est fixée à 3cm)
