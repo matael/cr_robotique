@@ -142,7 +142,7 @@ Les tâches, propres à la robotique via __NXC__, sont donc formidablement adapt
 
 Pour plus d'information sur la manière de gérer ces comportements dans d'autres systèmes embarqués, voir l'annexe.
 
-Gesion des fichiers
+Gestion des fichiers
 -------------------
 
 Le NXC propose une puissante alternative à la gestion fichier du C : les `fprintf()` sont remplacés par la fonction de plus haut niveau `WriteLnString()`.
