@@ -3,7 +3,7 @@ body {
     margin : auto;
     background-color:#dfdfdf;
     color : #424242;
-    font-family : Arial, serif;
+    font-family : Arial, sans-serif;
 }
 
 h1 { font-size : 30px; }
@@ -80,8 +80,8 @@ article p{
     line-height:25px;
 }
 
-article ol {
-    list-style-type: upper-roman;
+article p > code {
+    font-size: 1.2em;
 }
 
 /* Footer */
