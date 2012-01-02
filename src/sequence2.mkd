@@ -105,8 +105,8 @@ Elle possède d'ailleurs le __même inconvénient__ : elle est bloquante.
 
 Peu de langages proposent une fonction d'attente non-bloquante.
 On remarquera que le __Javascript__ met à disposition la fonction `setTimeout(fun, temps_ms);` qui n'est pas bloquante et permet d'utiliser le processus courant pendant le temps d'attente.
-
-Cela parait dommageable qu'aucune structure équivalente n'ait été trouvée pour la robotique car elle autorise de nombreux comportements intéressants.
+Des bibliothèques pour le langage C proposent quant à elles la gestion de timers.
+Cela parait dommageable qu'aucune structure équivalente à l'une de ces deux alternative n'ait été trouvée pour la robotique, car elle autorise de nombreux comportements intéressants.
 
 ---
 
