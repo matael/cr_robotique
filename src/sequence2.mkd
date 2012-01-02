@@ -197,7 +197,7 @@ Le robot recule progressivement en ligne droite, et effectue une mesure de dista
 
 Sept mesures sont donc effectuées, avec un obstacle intialement placé à 5 centimètres du capteur.
 
-Nous obtenons le tableau suivant :
+Nous obtenons le graphique suivant :
 
 <img src="media/graph.png" alt="Graphique"/>
 
