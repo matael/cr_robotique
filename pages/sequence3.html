@@ -22,7 +22,39 @@
 		<article>
 <h1>Séquence 3 : Projet Fangio</h1>
 
-<p>Voilà le code :</p>
+<p><strong>Objectif</strong></p>
+
+<blockquote>
+  <p>Le robot «Fangio» doit retrouver et suivre une piste tricolore tracée sur le sol. 
+La piste comporte des sections droites, des virages, des interruptions et des obstacles de taille variables que le robot doit contourner. 
+Lorsque le robot se trouve sur une surface blanche, c’est donc qu’il a quitté la piste, soit «de son plein gré» (contournement d’un obstacle), soit par accident (interruption de la piste). Dans ce cas, il doit retrouver la piste et continuer le parcours. 
+La piste comporte également des marques bleues que le robot devra compter.
+La course sera terminée dès que le robot aura compté 18 marques.
+Il s'arrêtera et affichera son temps de parcours en secondes.
+Le robot doit comporter un arrêt d'urgence de type bouton poussoir.
+De plus, les limites de la zone où le robot peut évoluer étant indiquées en jaune, la détection de la coueur jaune constitue également un arrêt d'urgence.</p>
+</blockquote>
+
+<p><strong>Restrictions</strong></p>
+
+<p>Une seule tâche, en dehors de <code>main</code>, est autorisée, ell doit gérer les arrêts d'urgence. </p>
+
+<p>That's all.</p>
+
+<p><strong>Principe</strong></p>
+
+<p>Grominet répond parfaitement au cahier des charges. La tâche <code>main</code> gère quasiment tout le programme (pas le choix, c'est la seule tâche en dehors de <code>Emergency_Stop()</code>) et gère les effets de lecture de toutes les couleurs possibles dans tous les cas possibles.</p>
+
+<p>La tâche <code>Emergency_Stop()</code> gère quant à elle les trois cas d'arrêt d'urgence : bouton poussoir, lecture de jaune, ou compteur de marques bleues arrivé à 18.</p>
+
+<p>Grominet suit la ligne avec une fluidité maximale, et réagit efficacement à tout effet le faisant sortir du circuit (principalement nos mains lors des tests).
+Il est également capable de retrouver la ligne après un virage raté.</p>
+
+<p>Lorsque le télémètre situé à l'avant indique un obstacle à cinq centimètres ou moins, il amorçe une esquive dépendant entièrement des dimensions de l'objet, à l'aide de son télémètre de droite.</p>
+
+<p>Grominet n'est pas bête, il esquive toujours par la gauche : un virage sec sur la droite lui ferait franchir la ligne jaune et sortir de la zone de test.</p>
+
+<p><strong>Produit</strong></p>
 
 <script src="https://gist.github.com/1481384.js?file=fangio.c"></script>
 		<div style="clear:both;">&nbsp;</div>

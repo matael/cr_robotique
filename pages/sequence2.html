@@ -31,7 +31,7 @@ Pour plus d'informations sur la programmation de systèmes embarqué en généra
 
 <p>Ce langage est dérivé du <strong>C</strong> avec notamment l'ajout d'une couche d'abstraction pour simplifier l'accès au hardware.</p>
 
-<p>La grande majorité des fonctions et utilitaires C est <strong>présent et utilisable</strong>, on notera toutefois que certaines (<code>enum</code> par exemple) sont inutilisables (ou du moins en apparence).</p>
+<p>La grande majorité des fonctions et utilitaires C est <strong>présente et utilisable</strong>, on notera toutefois que certaines (<code>enum</code> par exemple) sont rejetées par le compilateur (ou du moins en apparence).</p>
 
 <h2>Exercice : parcours géométriques prédéfinis</h2>
 
@@ -51,9 +51,9 @@ Pour plus d'informations sur la programmation de systèmes embarqué en généra
 <li>c'est pas joli, pas logique</li>
 <li>ça devient tendu quand le nombre d'itérations tend vers l'infini</li>
 </ul></li>
-<li>on ecrit une fonction qui se chargera de tout faire pour nous
+<li>on écrit une fonction qui se chargera de tous faire pour nous
 <ul>
-<li>le code devient plus clair par ce que divisé en <em>"sous-programmes"</em></li>
+<li>le code devient plus clair puisque divisé en <em>"sous-programmes"</em></li>
 <li>il est beaucoup plus facile à maintenir ou à retravailler</li>
 </ul></li>
 </ul>
@@ -62,14 +62,180 @@ Pour plus d'informations sur la programmation de systèmes embarqué en généra
 
 <script src="https://gist.github.com/1513923.js?file=Tom.c"></script>
 
+<hr />
+
 <p><strong>Parlons de <code>repeat</code>...</strong></p>
 
 <p>Il nous a été proposé d'utiliser l'instruction <code>repeat(n){}</code> pour la répétition d'une séquence d'instruction.</p>
 
-<p>Nous l'avons rapidement (pour ne pas dire immédiatement) abandonnée au profit d'une très classique boucle <code>while</code> (ou <code>for</code> mais c'est pareil...). Il nous semblait en effet intéressant de conserver un code source le plus proche du C possible.</p>
+<p>Nous l'avons rapidement (pour ne pas dire immédiatement) abandonnée au profit d'une très classique boucle <code>while</code> (ou <code>for</code> mais c'est pareil...). Il nous semblait en effet intéressant de conserver un code source le plus proche du C possible.
+De même, l'instruction <code>until</code>, équivalente d'une boucle <code>while(!(condition)){}</code>, n'a pas été convaincante en pratique.</p>
 
-<p>On note (c'est malheureusement aussi le cas avec l'arduino) que les concepteurs de systèmes embarqués programmables grand public ont souvent tendance à vouloir simplifier le code à tout prix.
-On se retrouve au final avec une multitude de langages plus ou moins proche du C mais aucun n'offrant les possibilités de ce dernier...</p>
+<p>On note (c'est malheureusement aussi le cas avec l'arduino) que les concepteurs de systèmes embarqués programmables grand public ont souvent tendance à vouloir simplifier le code à tout prix.</p>
+
+<p>On se retrouve au final avec une multitude de langages plus ou moins proche du C mais aucun n'offrant les possibilités de ce dernier...</p>
+
+<hr />
+
+<h2>Capteurs, attente conditionnelle</h2>
+
+<p>Tout l'intéret du robot est de pouvoir réagir à son environnement.
+Pour cela, nous avons besoin de capteurs et surtout, de pouvoir récupérer et traiter les informations qu'ils.... captent !</p>
+
+<p>L'objectif était ici de prendre en main les capteurs et surtout de comprendre comment les utiliser via <strong>NXC</strong>.
+Il s'agissait aussi de comprendre le fonctionnement des instructions <code>Wait()</code> et <code>until()</code> (que nous avons déjà évoquée).</p>
+
+<h3>Capteurs</h3>
+
+<p>Les fonctions d'initalisation des capteurs sont aisément assimilables :</p>
+
+<pre><code>SetSensorTouch(int port);       // capteur tactile
+SetSensorSound(int port);       // microphone
+SetSensorLowspeed(int port);    // télémètre
+SetSensorColorFull(int port);   // capteur couleur
+</code></pre>
+
+<hr />
+
+<p><strong>Pourquoi <em>"Lowspeed"</em> ?</strong></p>
+
+<p>Un télémètre est un capteur qui ne fonctionne qu'à faible vitesse,... d'où le nom de la fonction.</p>
+
+<hr />
+
+<p>Les informations délivrées par ces capteurs sont récupérables au moyen de fonctions au moins aussi simples que les premières :</p>
+
+<ul>
+<li><code>SensorUS(int port)</code> pour le télémètre (valeur entre <strong>0</strong> et <strong>255</strong>, sur <strong>8 bits</strong> donc)</li>
+<li><code>Sensor(int port)</code> pour tous les autres
+<ul>
+<li>capteur tactile : renvoie une valeur booléenne</li>
+<li>microphone : renvoie un entier entre <strong>0</strong> et <strong>100</strong> (ou <code>NULL</code>)</li>
+<li>capteur couleur : renvoie un entier entre <strong>1</strong> et <strong>6</strong> compris</li>
+</ul></li>
+</ul>
+
+<h3>Wait et until</h3>
+
+<p>L'instruction <code>until</code> a déjà été discutée plus haut. Elle permet de réaliser une attente <strong>jusqu'a ce que....</strong> soit l'inverse d'une i<code>while</code> qui exécute ses instructions <strong>tant que....</strong>.
+On peut trouver une équivalence plus habituelle à <code>until</code> avec la construction suivante :</p>
+
+<pre><code>while(!(condition)) {}
+</code></pre>
+
+<p>La fonction <code>Wait</code> est une simple fonction d'attente. On peut la mettre en parallèle avec la fonction <code>delay()</code> de l'arduino.</p>
+
+<p>Elle possède d'ailleurs le <strong>même inconvénient</strong> : elle est bloquante.</p>
+
+<hr />
+
+<p>Peu de langages proposent une fonction d'attente non-bloquante.
+On remarquera que le <strong>Javascript</strong> met à disposition la fonction <code>setTimeout(fun, temps_ms);</code> qui n'est pas bloquante et permet d'utiliser le processus courant pendant le temps d'attente.
+Des bibliothèques pour le langage C proposent quant à elles la gestion de timers.
+Cela parait dommageable qu'aucune structure équivalente à l'une de ces deux alternative n'ait été trouvée pour la robotique, car elle autorise de nombreux comportements intéressants.</p>
+
+<hr />
+
+<h3>Exercice</h3>
+
+<p>Voilà les étapes du programme demandé :</p>
+
+<ol>
+<li>Attendre que le micro détecte un son fort</li>
+<li>Faire avancer le robot à pleine puissance</li>
+<li>Attendre un obstacle à moins de 20 cm</li>
+<li>Se rapprocher de l’obstacle à vitesse réduite</li>
+<li>Attendre que le capteur tactile soit actionné</li>
+<li>Arrêter les moteurs immédiatement</li>
+<li>Attendre une seconde (temporisation)</li>
+<li>Reculer doucement sur 10cm environ</li>
+<li>Faire un quart de tour sur place</li>
+</ol>
+
+<p>Et le code qui va avec :</p>
+
+<script src="https://gist.github.com/1514414.js?file=Lessive.c"></script>
+
+<h2>La boucle de contrôle</h2>
+
+<p>Il est courant (pour ne pas dire incontournable) d'utiliser une boucle infinie dans la programmation de systèmes embarqués.</p>
+
+<p>En effet, le comportement de systèmes robotiques (ou même domotiques) reste relativement répétitif et peut être facilement géré au sein d'une boucle <code>while(true)</code>.</p>
+
+<p>On retrouve la nécessitée d'une telle structure dans l'exercice suivant :</p>
+
+<blockquote>
+  <p>Le robot doit maintenir une distance donnée (par exemple 10cm) avec l'obstacle devant lui que celui-ci avance ou recule.</p>
+</blockquote>
+
+<p>Ce comportement a été mis en oeuvre dans le programme suivant :</p>
+
+<script src="https://gist.github.com/1515091.js?file=Leopard_Adulte.c"></script>
+
+<hr />
+
+<p><strong>Polling loops</strong></p>
+
+<p>Un autre moyen de réagir vite aux changements de l'environnement extérieur lorsque le système ne peut gérer les interruptions (ou bien qu'elles sont déjà toutes utilisées) est de faire appelle à une <strong>boucle de contrôle</strong> (<em>polling loop</em>).</p>
+
+<p>C'est cette boucle qui sert alors d'abstraction lors de la lecture de valeur sur les broches.
+Elle s'occupe aussi, au besoin, de gèrer de <strong>pseudo interruptions</strong>.</p>
+
+<p>Encore une fois, les boucles sont incontournables dans la programmation de systèmes embarqués.</p>
+
+<hr />
+
+<h3>Pseudo choix</h3>
+
+<p>Le code suivant utilise capteurs et boucle pour que le robot éxécute cd comportement :</p>
+
+<ol>
+<li>avance jusuq'à un obstacle (percuté avec le Touch)</li>
+<li>analyse les obstacles à droite et gauche</li>
+<li>amorce un virage vers la direction libre
+<ul>
+<li>droite</li>
+<li>gauche</li>
+<li>demi tour si rien de libre</li>
+</ul></li>
+<li>s'arrête en marquant "WTF ?!" à l'écran si les 2 directions sont libres</li>
+</ol>
+
+<script src="https://gist.github.com/1517389.js?file=cacahuete.c"></script>
+
+<h2>Le principe des tâches</h2>
+
+<p>Le code suivant, exploitant le capteur couleur, fait du robot un chercheur de ligne des plus efficaces : le robot effectue une spirale carrée, couvrant ainsi un maximum de terrain. 
+En parallèle, une tâche analyse les résultats collectés par le capteur couleur et stoppe immédiatement l'ensemble des tâches via la fonction <code>StopAllTasks()</code> dés que la couleur rouge apparaît.</p>
+
+<p>Sans la tâche, il aurait été très complexe de collecter et analyser les données du capteur couleur en permanence. En effet, la fonction <code>RotateMotor()</code> utilisée pour avancer d'une distance précise étant bloquante, le capteur couleur n'aurait pu être utilisé qu'une fois le déplacement terminé.</p>
+
+<p>Les tâches, propres à la robotique via <strong>NXC</strong>, sont donc formidablement adaptées à ce problème. Elles tournent en parallèles les unes des autres, et assurent un comportement complexes nécessaires à tout projet digne de ce nom.</p>
+
+<p>Pour plus d'information sur la manière de gérer ces comportements dans d'autres systèmes embarqués, voir l'annexe.</p>
+
+<h2>Gestion des fichiers</h2>
+
+<p>Le NXC propose une puissante alternative à la gestion fichier du C : les <code>fprintf()</code> sont remplacés par la fonction de plus haut niveau <code>WriteLnString()</code>.</p>
+
+<p>Pour utiliser cette nouvelle fonction, nous nous placons dans un contexte de qualification de la précision du télémètre.
+Le robot recule progressivement en ligne droite, et effectue une mesure de distance à chaque fois qu'il rencontre une des sept marques bleue régulièrement espacées.</p>
+
+<p>Sept mesures sont donc effectuées, avec un obstacle intialement placé à 5 centimètres du capteur.</p>
+
+<p>Nous obtenons le tableau suivant :</p>
+
+<p><img src="media/graph.png" alt="Graphique"/></p>
+
+<!--
+
+
+4e4125250a636fe3a20d7c6f2bd5cb54
+
+
+-->
+
+<p>On distingue une augmentation de la distance de 6 cm environ entre chaque marque (l'incertitude indiquée par le fabricant du télémètre est de 3cm).</p>
 		<div style="clear:both;">&nbsp;</div>
 		</article>
 	</div>
