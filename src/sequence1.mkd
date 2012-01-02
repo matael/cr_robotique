@@ -6,7 +6,7 @@ Séquence 1 : Découverte, programmation iconique en NXT-G
 Construction du robot
 ---------------------
 
-Nous avons fait connaissance avec l'objet de nos expérimentations futures en construisant un robot en __Lego Technics__.
+Nous avons fait connaissance avec l'objet de nos expérimentations futures en construisant un robot en __Lego Technics__, que nous avons baptisé Grominet.
 
 Cette plateforme est animée par une __brique programmable NXT__ (voir ci-contre).
 
@@ -33,7 +33,7 @@ Si en théorie ce langage semble rapide à mettre en place et agréable à gére
 </p>
 
 
-Le programme le plus aboutit implémenté en __NXT-G__ que nous ayons fait utilisait deux commutations et dirigeais un robot pourvu de deux télémètres (un dirigé à sa droite, un dirigé à sa gauche), et, lorsqu'il heurtait un obstacle, analysait les obstacles à droite et à gauche et opérait un virage en fonction du résultat des deux sondages.
+Le programme le plus aboutit implémenté en __NXT-G__ que nous ayons fait utilisait deux commutations et dirigeais Grominet équipé de deux télémètres (un dirigé à sa droite, un dirigé à sa gauche), et, lorsqu'il heurtait un obstacle, analysait les obstacles à droite et à gauche et opérait un virage en fonction du résultat des deux sondages.
 Le programme n'aurait pas pu être complexifié, deux commutations étant très gourmandes en place sur le logiciel qui ne permet pas d'étendre la surface où l'on pose les blocs...
 Autant dire que nous étions pressés de trouver une vraie programmation, avec un vrai langage et un vrai IDE.
 
