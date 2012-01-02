@@ -130,6 +130,51 @@ Et le code qui va avec :
 <script src="https://gist.github.com/1514414.js?file=Lessive.c"></script>
 
 
+La boucle de contrôle
+---------------------
+
+Il est courant (pour ne pas dire incontournable) d'utiliser une boucle infinie dans la programmation de systèmes embarqués.
+
+En effet, le comportement de systèmes robotiques (ou même domotiques) reste relativement répétitif et peut être facilement géré au sein d'une boucle `while(true)`.
+
+On retrouve la nécessitée d'une telle structure dans l'exercice suivant :
+
+> Le robot doit maintenir une distance donnée (par exemple 10cm) avec l'obstacle devant lui que celui-ci avance ou recule.
+
+Ce comportement a été mis en oeuvre dans le programme suivant :
+
+<script src="https://gist.github.com/1515091.js?file=Leopard_Adulte.c"></script>
+
+
+---
+
+__Polling loops__
+
+Un autre moyen de réagir vite aux changements de l'environnement extérieur lorsque le système ne peut gérer les interruptions (ou bien qu'elles sont déjà toutes utilisées) est de faire appelle à une __boucle de contrôle__ (_polling loop_).
+
+C'est cette boucle qui sert alors d'abstraction lors de la lecture de valeur sur les broches.
+Elle s'occupe aussi, au besoin, de gèrer de __pseudo interruptions__.
+
+Encore une fois, les boucles sont incontournables dans la programmation de systèmes embarqués.
+
+---
+
+### Pseudo choix
+
+Le code suivant utilise capteurs et boucle pour que le robot éxécute cd comportement :
+
+1. avance jusuq'à un obstacle (percuté avec le Touch)
+2. analyse les obstacles à droite et gauche
+3. amorce un virage vers la direction libre
+    - droite
+    - gauche
+    - demi tour si rien de libre
+4. s'arrête en marquant "WTF ?!" à l'écran si les 2 directions sont libres
+
+
+<script src="https://gist.github.com/1517389.js?file=cacahuete.c"></script>
+
+
 Le principe des tâches
 ----------------------
 
@@ -154,6 +199,9 @@ Sept mesures sont donc effectuées, avec un obstacle intialement placé à 5 cen
 
 Nous obtenons le tableau suivant :
 
+<img src="media/graph.png" alt="Graphique"/>
+
+<!--
 <table>
     <tr>
         <td>Distance mesurée</td><td>13</td><td>19</td><td>23</td><td>29</td><td>35</td><td>40</td><td>46</td>
@@ -161,6 +209,7 @@ Nous obtenons le tableau suivant :
         <td>Marque</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
     </tr>
 </table>
+-->
 
 On distingue une augmentation de la distance de 6 cm environ entre chaque marque (l'incertitude indiquée par le fabricant du télémètre est de 3cm).
 
