@@ -6,6 +6,42 @@ Informations
 Ecrit en markdown, réalisé par __Lucas BOURNEUF (spi1075)__ et __Mathieu GABORIT (spi1032)__, ce site est de surcroît valide CSS 3 et du HTML 5.
 La raison de son existence est l'exposition des diverses aventures de Grominet, au travers de quatre séquences riches en instructions.
 
+Ce site ainsi que tous les programmes qui y sont présentés est sous license __WTFPL__ :
+
+
+> DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+
+> Version 2, December 2004
+
+> Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+
+> Everyone is permitted to copy and distribute verbatim or modified
+> copies of this license document, and changing it is allowed as long
+> as the name is changed.
+
+> DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+
+> TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+> 0. You just DO WHAT THE FUCK YOU WANT TO.
+
+
+## Les outils
+
+De nombreux outils nous ont été utiles, les voici (si nous en oublions, qu'ils nous pardonnent) :
+
+- [vim](http://www.vim.org) : un merveilleux éditeur de texte (et plus encore) que le moins barbu de nous deux affectionne particulièrement
+- [make](http://www.gnu.org/software/make/) : cette commande qui nous a largement simplifié la génération du site
+- [perl](http://www.perl.org) et son module [markdown](http://daringfireball.net/projects/markdown/) : qui nous ont rendu l'ajout de contenu plus qu'agréable
+- les validateurs [HTML5](http://fr.wikipedia.org/wiki/HTML5) et [CSS3](http://fr.wikipedia.org/wiki/CSS3#CSS3) pour vérifier notre code
+- [github](https://github.com) : un hébergeur de projet qui nous a permis de versionner le site (et de surveiller les bétises de l'autre...)
+- [gist](http://gist.github.com) : un service de github pour l'hébergement de code et sa coloration
+- :w
+:q
+:w
+:q
+:w
+:
 
 ## Grominet, le robot
 
