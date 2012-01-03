@@ -5,13 +5,14 @@ Langage de Programmation
 ------------------------
 
 Le plus pertinent dans la programmation et l'optimisation d'un système embarqué reste de passer par un langage de programmation standard.
-Pour plus d'informations sur la programmation de systèmes embarqué en général, consultez l'annexe.
+Pour plus d'informations sur la programmation de systèmes embarqués en général, consultez l'annexe.
 
 Le langage utilisé ici sera le langague __NXC__ (_Not eXtacly C_). 
 
-Ce langage est dérivé du __C__ avec notamment l'ajout d'une couche d'abstraction pour simplifier l'accès au hardware.
+Ce langage est dérivé du __C__ avec notamment l'ajout d'une couche d'abstraction pour simplifier l'accès au matériel.
 
 La grande majorité des fonctions et utilitaires C est __présente et utilisable__, on notera toutefois que certaines (`enum` par exemple) sont rejetées par le compilateur (ou du moins en apparence).
+
 
 Exercice : parcours géométriques prédéfinis
 -------------------------------------------
@@ -20,10 +21,11 @@ Nous avons fait éxécuter une série de parcours prédéfinis au robot et en pa
 
 <script src="https://gist.github.com/1485377.js?file=infinity.c"></script>
 
+Chacun de ces parcours étaient à réaliser au moyen d'une séquence d'instructions linéaire, puis d'une structure de répétition.
 
 
-Fonctions, parcours à 1 paramètre
----------------------------------
+Fonctions, parcours à un paramètre
+----------------------------------
 
 Le sujet est cette fois de faire parcourir au robot des carrés de plus en plus grands (par paliers de 10cm).
 
@@ -34,36 +36,32 @@ Pour ce genre de tâches, deux moyens :
     - ça devient tendu quand le nombre d'itérations tend vers l'infini
 - on écrit une fonction qui se chargera de tous faire pour nous
     - le code devient plus clair puisque divisé en _"sous-programmes"_
-    - il est beaucoup plus facile à maintenir ou à retravailler
+    - il est beaucoup plus facile à maintenir, réutiliser ou à retravailler 
 
 Voilà donc le code pour nos carrés :
 
 <script src="https://gist.github.com/1513923.js?file=Tom.c"></script>
 
----
-
-__Parlons de `repeat`...__
-
-Il nous a été proposé d'utiliser l'instruction `repeat(n){}` pour la répétition d'une séquence d'instruction.
-
-Nous l'avons rapidement (pour ne pas dire immédiatement) abandonnée au profit d'une très classique boucle `while` (ou `for` mais c'est pareil...). Il nous semblait en effet intéressant de conserver un code source le plus proche du C possible.
-De même, l'instruction `until`, équivalente d'une boucle `while(!(condition)){}`, n'a pas été convaincante en pratique.
-
-On note (c'est malheureusement aussi le cas avec l'arduino) que les concepteurs de systèmes embarqués programmables grand public ont souvent tendance à vouloir simplifier le code à tout prix.
-
-On se retrouve au final avec une multitude de langages plus ou moins proche du C mais aucun n'offrant les possibilités de ce dernier...
-
----
+###### Parlons de `repeat`... (<a href="#note_repeat" class="note_link">voir</a>)
+<div class="note" id="note_repeat">
+<p>Il nous a été proposé d'utiliser l'instruction <code>repeat(n){}</code> pour la répétition d'une séquence d'instructions.</p>
+<p>Nous l'avons rapidement (pour ne pas dire immédiatement) abandonnée au profit d'une très classique boucle <code>while</code> (ou <code>for</code>, mais c'est pareil...).
+Il nous semblait en effet intéressant de conserver un code source le plus proche du C possible.
+De même, l'instruction <code>until</code>, équivalente d'une boucle <code>while(!(condition)){}</code>, n'a pas été convaincante en pratique.</p>
+<p>On note (c'est malheureusement aussi le cas avec l'arduino) que les concepteurs de systèmes embarqués programmables grand public ont souvent tendance à vouloir simplifier le code à tout prix.</p>
+<p>On se retrouve au final avec une multitude de langages plus ou moins proche du C mais aucun n'offrant les possibilités de ce dernier...</p>
+<p class="uplink"><a href="#note_repeat">Cacher</a></p>
+</div>
 
 
 Capteurs, attente conditionnelle
 --------------------------------
 
-Tout l'intéret du robot est de pouvoir réagir à son environnement.
+Tout l'intéret d'un robot est de pouvoir réagir (du moins partiellement) à son environnement.
 Pour cela, nous avons besoin de capteurs et surtout, de pouvoir récupérer et traiter les informations qu'ils.... captent !
 
-L'objectif était ici de prendre en main les capteurs et surtout de comprendre comment les utiliser via __NXC__.
-Il s'agissait aussi de comprendre le fonctionnement des instructions `Wait()` et `until()` (que nous avons déjà évoquée).
+L'objectif était ici de prendre en main les capteurs et de comprendre comment les utiliser via __NXC__.
+Il s'agissait aussi de comprendre le fonctionnement des instructions `Wait()` et `until()` (que nous avons déjà évoquées).
 
 ### Capteurs
 
@@ -92,12 +90,12 @@ Les informations délivrées par ces capteurs sont récupérables au moyen de fo
 
 ### Wait et until
 
-L'instruction `until` a déjà été discutée plus haut. Elle permet de réaliser une attente __jusqu'a ce que....__ soit l'inverse d'une i`while` qui exécute ses instructions __tant que....__.
+L'instruction `until` a déjà été discutée plus haut. Elle permet de réaliser une attente __jusqu'a ce que....__ soit l'inverse d'une `while` qui exécute ses instructions __tant que....__.
 On peut trouver une équivalence plus habituelle à `until` avec la construction suivante :
 
     while(!(condition)) {}
 
-La fonction `Wait` est une simple fonction d'attente. On peut la mettre en parallèle avec la fonction `delay()` de l'arduino.
+La fonction `Wait` est une simple fonction d'attente. On peut la mettre en parallèle avec la fonction `delay()` de l'arduino et avec la fonction classique de l'__avr-libc__ (libc pour microcontrôleurs AVR/Atmel) `_delay_ms()`.
 
 Elle possède d'ailleurs le __même inconvénient__ : elle est bloquante.
 
@@ -107,6 +105,10 @@ Elle possède d'ailleurs le __même inconvénient__ : elle est bloquante.
 <p>Peu de langages proposent une fonction d'attente non-bloquante.
 On remarquera que le <strong>Javascript</strong> met à disposition la fonction <code>setTimeout(fun, temps_ms);</code> qui n'est pas bloquante et permet d'utiliser le processus courant pendant le temps d'attente.</p>
 
+<p>Des bibliothèques pour les langages C/C++ proposent quant à elles la gestion de timers (<strong>SDL</strong> et <strong>SFML</strong> pour n'en citer que deux).
+Cela parait dommageable qu'aucune structure équivalente à l'une de ces deux alternative n'ait été trouvée pour la robotique, car elle autorise de nombreux comportements intéressants.</p>
+<p class="uplink"><a href="#note_fctblock">Cacher</a></p>
+</div>
 
 ### Exercice
 
@@ -133,9 +135,9 @@ La boucle de contrôle
 
 Il est courant (pour ne pas dire incontournable) d'utiliser une boucle infinie dans la programmation de systèmes embarqués.
 
-En effet, le comportement de systèmes robotiques (ou même domotiques) reste relativement répétitif et peut être facilement géré au sein d'une boucle `while(true)`.
+En effet, le comportement de systèmes robotiques (ou même domotiques) reste relativement répétitif et peut être facilement géré au sein d'une boucle type `while(true)`.
 
-On retrouve la nécessitée d'une telle structure dans l'exercice suivant :
+On retrouve la nécessité d'une telle structure dans l'exercice suivant :
 
 > Le robot doit maintenir une distance donnée (par exemple 10cm) avec l'obstacle devant lui que celui-ci avance ou recule.
 
@@ -143,6 +145,7 @@ Ce comportement a été mis en oeuvre dans le programme suivant :
 
 <script src="https://gist.github.com/1515091.js?file=Leopard_Adulte.c"></script>
 
+Une version qui ne gérait pas le recul était aussi demandée, elle n'est toutefois pas présenté ici car celle ci-dessus suffit à répondre à l'exercice.
 
 ###### Polling loops (<a href="#note_polling" class="note_link">voir</a>)
 <div class="note" id="note_polling">
@@ -159,9 +162,9 @@ Elle s'occupe aussi, au besoin, de gèrer de <strong>pseudo interruptions</stron
 
 ### Pseudo choix
 
-Le code suivant utilise capteurs et boucle pour que le robot éxécute cd comportement :
+Le code suivant utilise capteurs et boucle pour que le robot éxécute ce comportement :
 
-1. avance jusuq'à un obstacle (percuté avec le Touch)
+1. avance jusuq'à un obstacle (percuté avec le TouchSensor)
 2. analyse les obstacles à droite et gauche
 3. amorce un virage vers la direction libre
     - droite
@@ -199,7 +202,7 @@ Lorsque le niveau logique change d'une manière précise sur une des entrées du
 Gestion des fichiers
 -------------------
 
-Le NXC propose une puissante alternative à la gestion fichier du C : les `fprintf()` sont remplacés par la fonction de plus haut niveau `WriteLnString()`.
+Le NXC propose une puissante alternative à la gestion fichier du C : les `fprintf()` en série sont remplacés par la fonction de plus haut niveau `WriteLnString()` (écriture du ligne et retour charriot).
 
 Pour utiliser cette nouvelle fonction, nous nous placons dans un contexte de qualification de la précision du télémètre.
 Le robot recule progressivement en ligne droite, et effectue une mesure de distance à chaque fois qu'il rencontre une des sept marques bleue régulièrement espacées.
@@ -221,6 +224,7 @@ Nous obtenons le graphique suivant :
 -->
 
 On distingue une augmentation de la distance de 6 cm environ entre chaque marque (l'incertitude indiquée par le fabricant du télémètre est de 3cm).
+Ce capteur est donc __moyennement précis__ et pourrait être avantageusement remplacé par des odomètres si une précision plus grande était nécéssaire.
 
 Le code utilisé pour cet exercice est le suivant :
 
