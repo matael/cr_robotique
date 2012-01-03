@@ -185,7 +185,18 @@ Sans la tâche, il aurait été très complexe de collecter et analyser les donn
 
 Les tâches, propres à la robotique via __NXC__, sont donc formidablement adaptées à ce problème. Elles tournent en parallèles les unes des autres, et assurent un comportement complexes nécessaires à tout projet digne de ce nom.
 
-Pour plus d'information sur la manière de gérer ces comportements dans d'autres systèmes embarqués, voir l'annexe.
+---
+
+#### Et sur d'autres systèmes ?
+
+Sur de nombreux systèmes embarqués, la réaction rapide à de nouveau évènements est gérée par un __mécanisme d'interruption__.
+Lorsque le signal logique change d'une manière précise sur une des entrées du contrôleur, une interruption est générée (on dit _lever une interruption_).
+
+Le contrôleurs arrête alors immédiatement la tâche en cours et en exécute une autre appellée _routine de gestion d'interruption_ avant de reprendre son traitement principal où il l'avait laissé.
+
+La routine de gestion est souvent courte et minimaliste pour ne pas perturber trop longtemps le programme principal.
+
+---
 
 Gestion des fichiers
 -------------------
