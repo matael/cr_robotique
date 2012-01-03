@@ -23,9 +23,15 @@ Le __NXC-G__ est un moyen de programmer le robot au moyen d'un éditeur graphiqu
 Cette voie a pour principal avantage de ne nécessiter __aucune__ connaissance préalable en programmation, et d'élaborer un comportement (très)  simple avec un peu de logique.
 On notera que, dès que l'on cherche à implémenter des algorithmes un peu plus complexes, le __NXT-G__ devient parfaitement inadapté.
 
-Le __NXT-G__ est un langage basé sur l'exécution de blocs dans un ordre définit par l'utilisateur. Si les blocs prit uns à uns n'ont aucune utilité réelle, c'est la séquence logique de blocs qui donnent au programme sa puissance. 
-Quelques exemples de blocs : _avancer à l'infini_, _attendre que le capteur tactile soit enfoncé_, _tourner à droite_.
-Si en théorie ce langage semble rapide à mettre en place et agréable à gérer, il assure en pratique un tas de spaguettis informe et incompréhensible dés que l'on veut gérer des conditions avancées et autres options utiles.
+Le __NXT-G__ est un langage basé sur l'exécution de blocs dans un ordre défini par l'utilisateur.
+Si les blocs pris un à un n'ont aucune utilité réelle, c'est la séquence logique de blocs qui donne au programme sa puissance. 
+Quelques exemples de blocs :
+
+- _avancer à l'infini_
+- _attendre que le capteur tactile soit enfoncé_
+- _tourner à droite_
+
+Si en théorie ce langage semble rapide à mettre en place et agréable à gérer, il assure en pratique un tas de spaguettis informe et incompréhensible dès que l'on veut gérer des conditions avancées et autres options utiles.
 
 <p class="legende">
     <img src="media/Cas_ramelle.PNG" alt="Un programme"/>
@@ -33,8 +39,9 @@ Si en théorie ce langage semble rapide à mettre en place et agréable à gére
 </p>
 
 
-Le programme le plus aboutit implémenté en __NXT-G__ que nous ayons fait utilisait deux commutations et dirigeais Grominet équipé de deux télémètres (un dirigé à sa droite, un dirigé à sa gauche), et, lorsqu'il heurtait un obstacle, analysait les obstacles à droite et à gauche et opérait un virage en fonction du résultat des deux sondages.
-Le programme n'aurait pas pu être complexifié, deux commutations étant très gourmandes en place sur le logiciel qui ne permet pas d'étendre la surface où l'on pose les blocs...
+Le programme le plus aboutit que nous ayons implémenté en __NXT-G__ utilisait deux commutations et dirigeait Grominet équipé de deux télémètres (un dirigé à sa droite et à sa gauche).
+Lorsqu'il heurtait un obstacle, il analysait les possibilités de fuite à droite et à gauche et opérait un virage en fonction du résultat des deux sondages.
+Le programme n'aurait pas pu être complexifié, deux commutations étant très gourmandes en place sur le logiciel (d'un point de vue purement géométrique) qui ne permet pas d'étendre la surface où l'on pose les blocs...
 Autant dire que nous étions pressés de trouver une vraie programmation, avec un vrai langage et un vrai IDE.
 
 Exemples de programmation
@@ -42,12 +49,12 @@ Exemples de programmation
 
 ### Attente sur des capteurs
 
-Il est possible en __NXT-G__ de réaliser des attentes sur des capteurs (comme des interruptions pas belles...) avec une séquence de blocs de ce type :
+Il est possible en __NXT-G__ de réaliser des attentes sur des capteurs (un peu comme des interruptions, mais en pas joli, pas modulable et pas fonctionnel...) avec une séquence de blocs de ce type :
 
 
 <p class="legende">
     <img src="media/Avancer_UntilTouch.PNG" alt="Un programme"/>
-    Un exemple d'avancer avec attente conditionnelle sur un capteur tactile
+    Un exemple d'avance avec attente conditionnelle sur un capteur tactile
 </p>
 
 ### Conditions utilisant des capteurs
