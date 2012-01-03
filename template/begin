@@ -4,6 +4,25 @@
         <title>Projet Informatique | Compte Rendu</title>
         <meta charset="utf-8"/>
 	<link rel="stylesheet" href="main.css" media="screen"/>
+	<script type="text/javascript" src="media/jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function (){
+				$(".note").hide();
+		});
+		$(function (){
+			$("h6 a").click(function (){
+                    $(".note").hide();
+					$(this.hash).slideDown();
+					return false;
+			});
+		});
+		$(function (){
+            $(".note > .uplink > a ").click(function (){
+					$(this.hash).slideUp();
+					return false;
+			});
+		});
+	</script>
     </head>
     <body>
         <header>
