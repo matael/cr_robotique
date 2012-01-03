@@ -24,6 +24,10 @@ em {
     font-weight : bold;
 }
 
+blockquote {
+    font-style: italic;
+}
+
 body > header {
     margin-bottom : 50px;
     text-align : center;
