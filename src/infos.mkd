@@ -36,12 +36,13 @@ De nombreux outils nous ont été utiles, les voici (si nous en oublions, qu'ils
 - les validateurs [HTML5](http://fr.wikipedia.org/wiki/HTML5) et [CSS3](http://fr.wikipedia.org/wiki/CSS3#CSS3) pour vérifier notre code
 - [github](https://github.com) : un hébergeur de projet qui nous a permis de versionner le site (et de surveiller les bétises de l'autre...)
 - [gist](http://gist.github.com) : un service de github pour l'hébergement de code et sa coloration
-- :w
-:q
-:w
-:q
-:w
-:
+- [markdown-static-sites](https://github.com/Matael/markdown-static-sites) un générateur de sites statiques en markdown écrit par nos soins
+
+### Markdown-static-sites
+
+Ce générateur de sites statiques (disponible sous license __WTFPL__ [ici](https://github.com/Matael/markdown-static-sites)) a été écrit spécialement pour simplifier la rédaction de compte-rendus HTML cette année.
+
+Il est basé, comme dit plus haut, sur __perl__ pour le parsing __markdown__ et __make__ pour simplifier la génération finale.
 
 ## Grominet, le robot
 
