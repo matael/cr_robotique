@@ -74,13 +74,13 @@ Les fonctions d'initalisation des capteurs sont aisément assimilables :
     SetSensorLowspeed(int port);    // télémètre
     SetSensorColorFull(int port);   // capteur couleur
 
----
 
-__Pourquoi _"Lowspeed"_ ?__
+###### Pourquoi _Lowspeed_ ? (<a href="#note_lowspeed" class="note_link">voir</a>)
+<div class="note" id="note_lowspeed">
+<p>Un télémètre est un capteur qui ne fonctionne correctement qu'à faible vitesse,... d'où le nom de la fonction.</p>
+<p class="uplink"><a href="#note_lowspeed">Cacher</a></p>
+</div>
 
-Un télémètre est un capteur qui ne fonctionne qu'à faible vitesse,... d'où le nom de la fonction.
-
----
 
 Les informations délivrées par ces capteurs sont récupérables au moyen de fonctions au moins aussi simples que les premières :
 
@@ -101,14 +101,12 @@ La fonction `Wait` est une simple fonction d'attente. On peut la mettre en paral
 
 Elle possède d'ailleurs le __même inconvénient__ : elle est bloquante.
 
----
+###### Pourquoi tant de haine ? (<a href="#note_fctblock" class="note_link">voir</a>)
+<div class="note" id="note_fctblock">
 
-Peu de langages proposent une fonction d'attente non-bloquante.
-On remarquera que le __Javascript__ met à disposition la fonction `setTimeout(fun, temps_ms);` qui n'est pas bloquante et permet d'utiliser le processus courant pendant le temps d'attente.
-Des bibliothèques pour le langage C proposent quant à elles la gestion de timers.
-Cela parait dommageable qu'aucune structure équivalente à l'une de ces deux alternative n'ait été trouvée pour la robotique, car elle autorise de nombreux comportements intéressants.
+<p>Peu de langages proposent une fonction d'attente non-bloquante.
+On remarquera que le <strong>Javascript</strong> met à disposition la fonction <code>setTimeout(fun, temps_ms);</code> qui n'est pas bloquante et permet d'utiliser le processus courant pendant le temps d'attente.</p>
 
----
 
 ### Exercice
 
@@ -146,18 +144,18 @@ Ce comportement a été mis en oeuvre dans le programme suivant :
 <script src="https://gist.github.com/1515091.js?file=Leopard_Adulte.c"></script>
 
 
----
+###### Polling loops (<a href="#note_polling" class="note_link">voir</a>)
+<div class="note" id="note_polling">
+<p>Un autre moyen de réagir vite aux changements de l'environnement extérieur lorsque le système ne peut gérer les interruptions (ou bien qu'elles sont déjà toutes utilisées) est de faire appelle à une <strong>boucle de contrôle</strong> (<em>polling loop</em> (en) ).</p>
 
-__Polling loops__
+<p>C'est cette boucle qui sert alors d'abstraction lors de la lecture de valeur sur les broches avant traitement.
+Elle s'occupe aussi, au besoin, de gèrer de <strong>pseudo interruptions</strong>.</p>
 
-Un autre moyen de réagir vite aux changements de l'environnement extérieur lorsque le système ne peut gérer les interruptions (ou bien qu'elles sont déjà toutes utilisées) est de faire appelle à une __boucle de contrôle__ (_polling loop_).
+<p>Cette méthode est aujourd'hui peu utilisée car une majorité des systèmes proposent une excellente gestion d'interruptions et d'accès aux broches.</p>
 
-C'est cette boucle qui sert alors d'abstraction lors de la lecture de valeur sur les broches.
-Elle s'occupe aussi, au besoin, de gèrer de __pseudo interruptions__.
-
-Encore une fois, les boucles sont incontournables dans la programmation de systèmes embarqués.
-
----
+<p>Encore une fois, les boucles sont incontournables dans la programmation de systèmes embarqués.</p>
+<p class="uplink"><a href="#note_polling">Cacher</a></p>
+</div>
 
 ### Pseudo choix
 
@@ -183,20 +181,20 @@ En parallèle, une tâche analyse les résultats collectés par le capteur coule
 
 Sans la tâche, il aurait été très complexe de collecter et analyser les données du capteur couleur en permanence. En effet, la fonction `RotateMotor()` utilisée pour avancer d'une distance précise étant bloquante, le capteur couleur n'aurait pu être utilisé qu'une fois le déplacement terminé.
 
-Les tâches, propres à la robotique via __NXC__, sont donc formidablement adaptées à ce problème. Elles tournent en parallèles les unes des autres, et assurent un comportement complexes nécessaires à tout projet digne de ce nom.
+Les tâches, propres à la robotique via __NXC__, sont donc formidablement adaptées à ce problème. Elles tournent en parallèles les unes des autres, et assurent un comportement complexe nécessaire à tout projet digne de ce nom.
 
----
+###### Et sur d'autres systèmes ? (<a href="#note_osys" class="note_link">voir</a>)
+<div class="note" id="note_osys">
 
-#### Et sur d'autres systèmes ?
+<p>Sur de nombreux systèmes embarqués, la réaction rapide à de nouveau évènements est gérée par un <strong>mécanisme d'interruption</strong>.
+Lorsque le niveau logique change d'une manière précise sur une des entrées du contrôleur, une interruption est générée (on dit <em>lever une interruption</em>).</p>
 
-Sur de nombreux systèmes embarqués, la réaction rapide à de nouveau évènements est gérée par un __mécanisme d'interruption__.
-Lorsque le signal logique change d'une manière précise sur une des entrées du contrôleur, une interruption est générée (on dit _lever une interruption_).
+<p>Le contrôleur arrête alors immédiatement la tâche en cours et en exécute une autre appellée <em>routine de gestion d'interruption</em> avant de reprendre son traitement principal où il l'avait laissé.</p>
 
-Le contrôleurs arrête alors immédiatement la tâche en cours et en exécute une autre appellée _routine de gestion d'interruption_ avant de reprendre son traitement principal où il l'avait laissé.
+<p>La routine de gestion est souvent courte et minimaliste pour ne pas perturber trop longtemps le programme principal.</p>
+<p class="uplink"><a href="#note_osys">Cacher</a></p>
+</div>
 
-La routine de gestion est souvent courte et minimaliste pour ne pas perturber trop longtemps le programme principal.
-
----
 
 Gestion des fichiers
 -------------------
