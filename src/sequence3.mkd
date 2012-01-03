@@ -15,7 +15,7 @@ __Restrictions__
 
 Une seule tâche, en dehors de `main`, est autorisée, ell doit gérer les arrêts d'urgence. 
 
-That's all.
+_That's all folks!_
 
 __Principe__
 
@@ -33,4 +33,4 @@ Grominet n'est pas bête, il esquive toujours par la gauche : un virage sec sur 
 
 __Produit__
 
-<script src="https://gist.github.com/1481384.js?file=fangio.c"></script>
+<script src="https://gist.github.com/1555072.js?file=fangio.c"></script>
