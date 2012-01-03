@@ -1,0 +1,4 @@
+Informations
+============
+
+Ce site à été réalisé par __Lucas BOURNEUF (spi1075)__ et __Mathieu GABORIT (spi1032)__.
