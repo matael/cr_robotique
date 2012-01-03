@@ -1,4 +1,13 @@
 Informations
 ============
 
-Ce site à été réalisé par __Lucas BOURNEUF (spi1075)__ et __Mathieu GABORIT (spi1032)__.
+## Le site
+
+Ecrit en markdown, réalisé par __Lucas BOURNEUF (spi1075)__ et __Mathieu GABORIT (spi1032)__, ce site est de surcroît valide CSS 3 et du HTML 5.
+La raison de son existence est l'exposition des diverses aventures de Grominet, au travers de quatre séquences riches en instructions.
+
+
+## Grominet, le robot
+
+Composé de lego, d'une unité centrale de capteurs et deux moteurs, 
+Grominet parcours le monde selon les directives de ses deux maîtres exposées en __NXC__ depuis le logiciel __Brixc Command Center__.
