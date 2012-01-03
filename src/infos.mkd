@@ -33,7 +33,7 @@ De nombreux outils nous ont été utiles, les voici (si nous en oublions, qu'ils
 - [vim](http://www.vim.org) : un merveilleux éditeur de texte (et plus encore) que le moins barbu de nous deux affectionne particulièrement
 - [make](http://www.gnu.org/software/make/) : cette commande qui nous a largement simplifié la génération du site
 - [perl](http://www.perl.org) et son module [markdown](http://daringfireball.net/projects/markdown/) : qui nous ont rendu l'ajout de contenu plus qu'agréable
-- les validateurs [HTML5](http://fr.wikipedia.org/wiki/HTML5) et [CSS3](http://fr.wikipedia.org/wiki/CSS3#CSS3) pour vérifier notre code
+- les validateurs [HTML5](http://fr.wikipedia.org/wiki/HTML5) et [CSS3](http://fr.wikipedia.org/wiki/CSS3#CSS3) pour vérifier notre code du site
 - [github](https://github.com) : un hébergeur de projet qui nous a permis de versionner le site (et de surveiller les bétises de l'autre...)
 - [gist](http://gist.github.com) : un service de github pour l'hébergement de code et sa coloration
 - [markdown-static-sites](https://github.com/Matael/markdown-static-sites) un générateur de sites statiques en markdown écrit par nos soins
