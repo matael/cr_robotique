@@ -8,6 +8,10 @@ body {
 
 h1 { font-size : 30px; }
 h2 { font-size : 22px; }
+h6 { 
+	font-size : 1.1em;
+    margin-bottom: 5px;
+}
 
 a {
     text-decoration : none;
@@ -150,3 +154,12 @@ td {
 tr td:first-child {
     font-weight: bold;
 }
+
+/* Notes */
+
+.note {
+	border-top: 1px solid #c1c1c1;
+	border-bottom: 1px solid #c1c1c1;
+}
+
+.uplink { text-align: right;}
