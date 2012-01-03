@@ -224,3 +224,7 @@ Nous obtenons le graphique suivant :
 
 On distingue une augmentation de la distance de 6 cm environ entre chaque marque (l'incertitude indiquée par le fabricant du télémètre est de 3cm).
 
+Le code utilisé pour cet exercice est le suivant :
+
+<script src="https://gist.github.com/1554905.js?file=dist.c"></script>
+
