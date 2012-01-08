@@ -50,10 +50,13 @@ body > header > p > a {
     color : #424242;
 }
 
+#menu {
+    border-bottom : 1px solid #c1c1c1;
+}
+
 #menu ul{
     list-style-type: none;
     text-align : center;
-    font-size:1.2em;
 }
 
 #menu li {
