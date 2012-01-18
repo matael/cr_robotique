@@ -13,7 +13,7 @@ __Objectif__
 
 __Restrictions__
 
-Une seule tâche, en dehors de `main`, est autorisée, ell doit gérer les arrêts d'urgence. 
+Une seule tâche, en dehors de `main`, est autorisée, elle doit gérer les arrêts d'urgence. 
 
 _That's all folks!_
 
@@ -24,7 +24,7 @@ Grominet répond parfaitement au cahier des charges. La tâche `main` gère quas
 La tâche `Emergency_Stop()` gère quant à elle les trois cas d'arrêt d'urgence : bouton poussoir, lecture de jaune, ou compteur de marques bleues arrivé à 18.
 
 Grominet suit la ligne avec une fluidité maximale, et réagit efficacement à tout effet le faisant sortir du circuit (principalement nos mains lors des tests).
-Il est également capable de retrouver la ligne après un virage raté.
+Il est également capable de retrouver la ligne après un virage raté de quelques centimètres.
 
 Lorsque le télémètre situé à l'avant indique un obstacle à cinq centimètres ou moins, il amorçe une esquive dépendant entièrement des dimensions de l'objet, à l'aide de son télémètre de droite.
 
