@@ -4,22 +4,22 @@ Séquence 4 : Projet Knossos
 Cahier des charges
 ------------------
 
-Le robot "Knossos" doit parcourir un labyrinthe matérialisé par des lignes noires et des balises de couleurs imprimées sur un support blanc. Les balises bleues indiquent les intersections, les balises rouges indquent les voies sans issue et les balises vertes indiquent l'entrée et la sortie. Lorsque le robot a trouvé la sortie du labyrinthe, il doit faire demi-tour et revenir à l'entrée.
+Le robot "Knossos" doit parcourir un labyrinthe matérialisé par des lignes noires et des balises de couleurs imprimées sur un support blanc. Les balises bleues indiquent les intersections, les balises rouges indiquent les voies sans issue et les balises vertes indiquent l'entrée et la sortie. Lorsque le robot a trouvé la sortie du labyrinthe, il doit faire demi-tour et revenir à l'entrée.
 
 
 Addendum
 --------
 
 Aucune restrictions quant à l'architecture du code.
-Grominet est munis d'un tout nouveau capteur, le __lecteur de ligne__. Il permet de suivre une ligne noire sur fond blanc (ou ligne blanche sur fond noire).
+Grominet est muni d'un tout nouveau capteur, le __lecteur de ligne__. Il permet de suivre une ligne noire sur fond blanc (ou ligne blanche sur fond noire).
 
 
 Fonctionnement du lecteur de ligne
 ----------------------------------
 
-Le lecteur de ligne travaille avec un tableau de 8 cases, dans lequel sont stockés des entiers compris entre 0 et 100 correspondant à une nuance de gris. (100 pour le blanc, 0 pour le noir)
+Le lecteur de ligne travaille avec un tableau de 8 cases, dans lequel sont stockés des entiers compris entre 0 et 100 correspondant à une nuance de gris (100 pour le blanc, 0 pour le noir).
 En examinant et traitant ces valeurs, on peut établir un PID permettant de suivre la ligne facilement.
-Dans le code source, la fonction getError() se charge de trouver le PID, et renvois une valeur entre -1 et 1. Multipliée à la constante Kp, elle donne la correction à appliquer à chaque moteur.
+Dans le code source, la fonction `getError()` se charge de trouver le PID, et renvoie une valeur entre -1 et 1. Multipliée par la constante `Kp`, elle donne la correction à appliquer à chaque moteur.
 
 
 Principe du parcours du labyrinthe
@@ -32,8 +32,9 @@ Lorsqu'il voit du bleu, il cherche d'abord un chemin à gauche, en s'appuyant su
 Principe du parcours de graphe
 ------------------------------
 
-Lors de son premier parcours, Grominet enregistre nombre de données concernant ce qu'il a trouvé. Il utilise en fait un tableau d'entiers contenants le nombre de fois qu'il est passé dans chaque case bleue. A partir de ce nombre de passage, il peut facilement retrouver son chemin dans le sens inverse. Le tableau est de taille égale au nombre de cases bleues dans le circuit+1 (pour éviter les erreurs).
+Un entier stocké dans un tableau de taille égale au nombre de cases bleues dans le circuit plus une (pour éviter le débordement de tableau) indique le nombre de fois où le robot à recontré une même case bleue.
 
+Quand un nombre arrive à 4, il est remis à 0 et la case précédente est incrémentée de 1.
 
 Produit
 -------
