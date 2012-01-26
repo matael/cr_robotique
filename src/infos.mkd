@@ -13,6 +13,7 @@ Pour le premier de ces aspects, nous nous sommes tournée vers l'[arduino](http:
 
 Pour le second, nous avons utilisé une approche un peu plus "matérielle" en s'orientant vers les FPGA. Ces composants contiennent un grand nombre de portes logiques réarrangeables.
 Ils sont programmable via plusieurs langages dont :
+
 - le __Verilog__ (très apprécié outre-atlantique)
 - le __VHDL__ (très utilisé en Europe) que nous avons utilisé nous-même
 
