@@ -1,6 +1,25 @@
 Informations
 ============
 
+## Pourquoi avoir rajoutée une annexe ?
+
+Et pourquoi est elle pleine de choses pas demandées ?
+
+La réponse est relativement simple. Nous faisons tous les deux partie du HAUM, un club délectronique monté en début d'année à l'université.
+Nous pensons que ce projet peut aussi revêtir des aspects plus poussés au niveau de la programmation embarquée.
+Nous avons trouvé intéressant de faire le lien avec 2 systèmes maîtres de la programmation embarquée : les microcontrôleurs et les composants programmables en général.
+
+Pour le premier de ces aspects, nous nous sommes tournée vers l'[arduino](http://arduino.cc), platine programmable à relativement faible coût, qui offre un bon point d'entrée dans le monde de l'embarqué.
+
+Pour le second, nous avons utilisé une approche un peu plus "matérielle" en s'orientant vers les FPGA. Ces composants contiennent un grand nombre de portes logiques réarrangeables.
+Ils sont programmable via plusieurs langages dont :
+- le __Verilog__ (très apprécié outre-atlantique)
+- le __VHDL__ (très utilisé en Europe) que nous avons utilisé nous-même
+
+Suite à une relativement brève prise en main de l'outil par pure curiosité, nous avons trouvé intéressant d'inclure en annexe le pendant __VHDL__ du code en __C__ pour l'arduino. 
+
+Le principal intérêt que nous voyons à ces 2 extraits de code est le lien qu'ils tirent entre le projet proposé (purement éducatif) et l'immense domaine du développement embarqué.
+
 ## Le site
 
 Ecrit en markdown, réalisé par __Lucas BOURNEUF (spi1075)__ et __Mathieu GABORIT (spi1032)__, ce site est de surcroît valide CSS 3 et du HTML 5.
@@ -32,7 +51,7 @@ De nombreux outils nous ont été utiles, les voici (si nous en oublions, qu'ils
 - [make](http://www.gnu.org/software/make/) : cette commande qui nous a largement simplifié la génération du site
 - [perl](http://www.perl.org) et son module [markdown](http://daringfireball.net/projects/markdown/) : qui nous ont rendu l'ajout de contenu plus qu'agréable
 - les validateurs [HTML5](http://fr.wikipedia.org/wiki/HTML5) et [CSS3](http://fr.wikipedia.org/wiki/CSS3#CSS3) pour vérifier notre code du site
-- [github](https://github.com) : un hébergeur de projet qui nous a permis de versionner le site (et de surveiller les bétises de l'autre...)
+- [github](https://github.com) : un hébergeur de projet qui nous a permis de versionner le site (et de surveiller les bétises de l'autre...) via le super SCM [git](http://git-scm.org)
 - [gist](http://gist.github.com) : un service de github pour l'hébergement de code et sa coloration
 
 ## Grominet, le robot
